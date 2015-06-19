@@ -5,7 +5,7 @@ Tests for significant differences in genetic diversity between populations based
 This R script carries out a permutation procedure, reasmpling from the combined haplotype frequencies over all your populations, in order to test whether the observed differences in haplotype/nucleotide diversity between specific populations are greater than expected by chance.
 
 #Things to note#
-1) This program "eats" arlequin files, that have a haplotype block at the top of the file. Check out the example data if you are unsure on this format.
+1) This program "eats" arlequin files that have a haplotype block at the top of the file. Check out the example data if you are unsure on this format.
 
 2) You need to make sure the library stringr is loaded in to your R environment
 
@@ -13,7 +13,7 @@ This R script carries out a permutation procedure, reasmpling from the combined 
 
 4) It counts indels as a state for the calculation of nucleotide diversity (so make sure sequences of different lengths are 'padded' by missing data, not dashes).
 
-5) If there are haplotypes that do not reciprocally match (i.e. a haplotype with missing data can match to more than one other haplotype, and the haplotypes it matches to do not match to each other), the program will identify the haplotype with the largest amount of missing data. In most cases this will be the culprit, but a better idea is to make sure all of your haplotypes are unique before running this program.
+5) If there are haplotypes that do not reciprocally match (i.e. a haplotype with missing data can match to more than one haplotype, and the haplotypes it matches to do not match to each other), the program will identify the haplotype with the largest amount of missing data. In most cases this will be the culprit, but a better idea is to make sure all of your haplotypes are unique before running this program.
 
 6) Nucleotide diversity will differ slightly from arlequin if there is missing data, as genetic_diversity_diffs calculates the proportional difference between haplotypes only based on non-missing data, whereas arlequin averages the differences over the entire length of alignment to calculate proportional differences. 
 
