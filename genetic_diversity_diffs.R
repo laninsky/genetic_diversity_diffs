@@ -675,8 +675,8 @@ x <- 1
 obs_diff <- NULL 
 
 summary_results <-  matrix("",nrow = (no_pops+2),ncol = (no_pops+1))
-summary_results[1,1] <-  c("Haplotype diversity for each population given to right")
-summary_results[2,1] <-  c("Haplotype diversity difference between populations below diagonal, p-values above diagonal")
+summary_results[1,1] <-  c("\"Haplotype diversity for each population given to right\"")
+summary_results[2,1] <-  c("\"Haplotype diversity difference between populations below diagonal, p-values above diagonal\"")
 summary_results[2,2:(no_pops+1)] <- haplist[1,3:(no_pops+2)]
 summary_results[3:(no_pops+2),1] <- t(haplist[1,3:(no_pops+2)])
 
@@ -826,8 +826,8 @@ x <- 1
 obs_diff <- NULL
 
 summary_results <-  matrix("",nrow = (no_pops+2),ncol = (no_pops+1))
-summary_results[1,1] <-  c("Nucleotide diversity for each population given to right")
-summary_results[2,1] <-  c("Nucleotide diversity difference between populations below diagonal, p-values above diagonal")
+summary_results[1,1] <-  c("\"Nucleotide diversity for each population given to right\"")
+summary_results[2,1] <-  c("\"Nucleotide diversity difference between populations below diagonal, p-values above diagonal\"")
 summary_results[2,2:(no_pops+1)] <- haplist[1,3:(no_pops+2)]
 summary_results[3:(no_pops+2),1] <- t(haplist[1,3:(no_pops+2)])
 
