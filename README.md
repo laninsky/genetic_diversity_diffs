@@ -1,4 +1,4 @@
-# genetic_diversity_diffs v1.0.0
+# genetic_diversity_diffs v1.0.1
 Tests for significant differences in genetic diversity between populations based on DNA sequence data
 
 #How it works#
@@ -49,4 +49,8 @@ Demo arlequin file "ATL_by_region_394.arp" located in example folder
 Publishing an overview of testing for differences in genetic diversity is on my to-do-list, but in the meantime, if you use genetic_diversity_diffs, please cite it using the following:
 
 Alexander, A. 2015. genetic_diversity_diffs v1.0.0. Available from https://github.com/laninsky/genetic_diversity_diffs
+
+#Version history#
+
+1.0.1: made the output tables a little prettier for opening in excel
 
