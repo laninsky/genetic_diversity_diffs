@@ -50,6 +50,11 @@ Publishing an overview of testing for differences in genetic diversity is on my 
 
 Alexander, A. 2015. genetic_diversity_diffs v1.0.0. Available from https://github.com/laninsky/genetic_diversity_diffs
 
+This pipeline also wouldn't be possible without:
+
+R: R Core Team. 2015. R: A language and environment for statistical computing. URL http://www.R-project.org/. R Foundation for Statistical Computing, Vienna, Austria. https://www.r-project.org/
+
+
 #Version history#
 
 1.0.1: made the output tables a little prettier for opening in excel
