@@ -54,6 +54,8 @@ This pipeline also wouldn't be possible without:
 
 R: R Core Team. 2015. R: A language and environment for statistical computing. URL http://www.R-project.org/. R Foundation for Statistical Computing, Vienna, Austria. https://www.r-project.org/
 
+Stringr:  Hadley Wickham (2012). stringr: Make it easier to work with strings..
+  R package version 0.6.2. http://CRAN.R-project.org/package=stringr (for up-to-date citation information run citation("stringr" in R)
 
 #Version history#
 
