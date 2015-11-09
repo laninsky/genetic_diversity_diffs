@@ -1,9 +1,9 @@
 [Profile]
      NbSamples=4
-     DataType=DNA  # - {DNA, RFLP, MICROSAT, STANDARD, FREQUENCY}
-     GenotypicData=0  # - {0, 1}
-     GameticPhase=1  # - {0, 1}
-     LocusSeparator=NONE  # - {TAB, WHITESPACE, NONE}
+     DataType=DNA  # - {DNA is the only format that works with genetic_diversity_diffs}
+     GenotypicData=0  # - {0 is the only format that works with genetic_diversity diffs}
+     GameticPhase=1  # - {1 is the only format that works with genetic_diversity diffs}}
+     LocusSeparator=NONE  # - {NONE - bases should not have spaces between them}
      RecessiveData=0  # - {0, 1}
      MissingData='?'  # A single character specifying missing data
 #    Some advanced settings the experienced user can uncomment
@@ -17,10 +17,7 @@
 
 #    Giving a name to the haplotype list is optional
 #    HaplListName="Internal name for the haplotypes definitions"
-
-#    If the haplotype list can be found in an external file:
-#    HaplList=EXTERN "Name of external haplotype file"
-
+#    This program will not work using an external file for the haplotype list
 #    Alternatively, the haplotype list can be included directly:
 
     HaplList={
@@ -102,6 +99,8 @@ X	1
 	   SampleData= {
 C	40
 }                         
+
+# This structure section is optional and is not used by genetic_diversity_diffs
 	[[Structure]]
 
 		StructureName="New Edited Structure"
