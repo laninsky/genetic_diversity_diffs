@@ -1,4 +1,4 @@
-# genetic_diversity_diffs v1.0.1
+# genetic_diversity_diffs v1.0.2
 Tests for significant differences in genetic diversity between populations based on DNA sequence data
 
 #How it works#
@@ -58,6 +58,7 @@ Stringr:  Hadley Wickham (2012). stringr: Make it easier to work with strings..
   R package version 0.6.2. http://CRAN.R-project.org/package=stringr (for up-to-date citation information run citation("stringr" in R)
 
 #Version history#
+1.0.2: gave some more commented-out notes on the arlequin file in the examples folder
 
 1.0.1: made the output tables a little prettier for opening in excel
 
