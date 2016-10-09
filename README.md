@@ -46,9 +46,11 @@ genetic_diversity_diffs("C:/Users/Folder/","ATL_by_region_394.arp",1000,"Y","Y")
 Demo arlequin file "ATL_by_region_394.arp" located in example folder
 
 #Suggested citation#
-Publishing an overview of testing for differences in genetic diversity is on my to-do-list, but in the meantime, if you use genetic_diversity_diffs, please cite it using the following:
+genetic_diversity_diffs was first published in:
+Alexander, A., Steel, D., Hoekzema, K., Mesnick, S.L., Engelhaupt, D., Kerr, I., Payne, R. and Baker, C.S., 2016. What influences the worldwide genetic structure of sperm whales (Physeter macrocephalus)?. Molecular ecology. 25: 2754–2772
 
-Alexander, A. 2015. genetic_diversity_diffs v1.0.0. Available from https://github.com/laninsky/genetic_diversity_diffs
+If you want to cite the specific version of the script you used, I suggest the following:
+Alexander, A. 2016. genetic_diversity_diffs v1.0.2. Available from https://github.com/laninsky/genetic_diversity_diffs
 
 This pipeline also wouldn't be possible without:
 
