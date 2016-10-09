@@ -47,9 +47,11 @@ Demo arlequin file "ATL_by_region_394.arp" located in example folder
 
 #Suggested citation#
 genetic_diversity_diffs was first published in:
+
 Alexander, A., Steel, D., Hoekzema, K., Mesnick, S.L., Engelhaupt, D., Kerr, I., Payne, R. and Baker, C.S., 2016. What influences the worldwide genetic structure of sperm whales (Physeter macrocephalus)?. Molecular ecology. 25: 2754–2772
 
 If you want to cite the specific version of the script you used, I suggest the following:
+
 Alexander, A. 2016. genetic_diversity_diffs v1.0.2. Available from https://github.com/laninsky/genetic_diversity_diffs
 
 This pipeline also wouldn't be possible without:
