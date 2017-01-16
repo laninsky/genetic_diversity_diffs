@@ -334,196 +334,48 @@ for (j in 2:(no_haps)) {
 #Checking that haplotypes can't be a match to more than one haplotype due to missing data
 identical_haps <- matrix(which(propdiffs==0,arr.ind=TRUE),ncol=2)
 second_haps <- unique(identical_haps[,2])
-ident_hap <- NULL
-for (i in second_haps) {
-   temp_ident_hap <- propdiffs[1,i]
-   temp_haps <-  identical_haps[(which(identical_haps[,2]==i)),1]   
-   if(length(temp_haps)>1) {
-   #Where there are more than two haplotypes
-      for (j in 2:(length(temp_haps)-1)) {
-         for (k in (j+1):(length(temp_haps))) {
-            if (!(as.numeric(propdiffs[temp_haps[k],temp_haps[j]])==0)) {
-               print(noquote(""))
-               print(noquote("You have haplotype(s) with so much missing data they could be a match"))
-               print(noquote("to multiple different haplotypes e.g."))
-               print(noquote(paste(propdiffs[1,c(i,temp_haps)])))
-               print(noquote("Of these..."))               
-               hap_missing <- which.min(nchar(gsub("N","",haplist[c(i,temp_haps),2]))+nchar(gsub(missingdata,"",haplist[c(i,temp_haps),2])))
-               print(noquote(haplist[c(i,temp_haps),1][hap_missing]))
-               flush.console()
-               stop("Has the most missing data of the matching haplotypes. Remove it and try again")
-            }  
+combined_haps <- NULL
+rm_haps <- NULL
+if(length(second_haps)>0) {
+   for (i in second_haps) {
+      temp_ident_hap <- propdiffs[1,i]
+      temp_haps <-  identical_haps[(which(identical_haps[,2]==i)),1]   
+      if(length(temp_haps)>1) {
+      #Where there are more than two haplotypes
+         for (j in 2:(length(temp_haps)-1)) {
+            hap_max <- which.max(nchar(gsub("N","",haplist[c(i,temp_haps),2]))+nchar(gsub(missingdata,"",haplist[c(i,temp_haps),2])))
+            for (k in (j+1):(length(temp_haps))) {
+               if (!(as.numeric(propdiffs[temp_haps[k],temp_haps[j]])==0)) {
+                  print(noquote(""))
+                  print(noquote("You have haplotype(s) with so much missing data they could be a match"))
+                  print(noquote("to multiple different haplotypes e.g."))
+                  print(noquote(paste(propdiffs[1,c(i,temp_haps)])))
+                  print(noquote("Of these..."))               
+                  hap_missing <- which.min(nchar(gsub("N","",haplist[c(i,temp_haps),2]))+nchar(gsub(missingdata,"",haplist[c(i,temp_haps),2])))
+                  print(noquote(haplist[c(i,temp_haps),1][hap_missing]))
+                  flush.console()
+                  stop("Has the most missing data of the matching haplotypes. Remove it and try again")
+               }  
+            }
+            print(noquote("The following set of haplotypes is identical:"))
+            print(noquote(propdiffs[1,c(i,temp_haps)]))
+            print(noquote(""))
+            hap_max <- which.max(nchar(gsub("N","",haplist[c(i,temp_haps),2]))+nchar(gsub(missingdata,"",haplist[c(i,temp_haps),2])))
+         
          }
-      }
-   }   
    
    
-   
-   
-# Calculating the amount of mising data between haplotypes   
-j <- 2
-namearray <- NULL
-missingamount <- NULL
-
-while (j <= no_haps) {
-namearray[j] <- haplist[j,1]
-if (!(is.null(missingdata))) {
-missingamount[j] <- nchar(haplist[j,2])-nchar(gsub(missingdata,"",haplist[j,2],fixed=TRUE))
-} else {
-missingamount[j] <- 0
-}
-k <- j + 1
-m <- 0
-while (k <= (no_haps+1)) {
-if (propdiffs[k,j]==0) {
-m <- m + 1
-namearray[j] <- paste(namearray[j],haplist[k,1])
-if (!(is.null(missingdata))) {
-missingamount[j] <- paste(missingamount[j],(nchar(haplist[k,2])-nchar(gsub(missingdata,"",haplist[k,2],fixed=TRUE))))
-} else {
-missingamount[j] <- paste(missingamount[j],0)
-}
-}
-k <- k + 1
-}
-j <- j + 1
-}
-   
-newnamearray <- NULL
-newmissingamount <- NULL
-
-namearraylen <- length(namearray)
-for (j in 1:namearraylen) {
-if ((length(unlist(strsplit(namearray[j]," "))))>1) {
-newnamearray <- rbind(newnamearray,namearray[j])
-newmissingamount <- rbind(newmissingamount,missingamount[j])
-}
+   }
+#modding the list      
+      
+} else {   
+   print(noquote("The frequency for sets of identical haplotypes has been merged"))
+   print(noquote("The modified input table is in the process of being written to:"))
+   print("haplist.txt")
+   print(noquote(""))
+   flush.console()
 }
 
-#This for loop is figuring out which haplotype might be identical, given ambiguous sites
-if(length(newnamearray)>0) {
-newmissingamount <- cbind(newmissingamount,NA)
-newnamearray <- cbind(newnamearray,NA)
-newnamearraylen <- dim(newnamearray)[1]
-j <- 1
-i <- 1
-
-finnamearray <- NULL
-finmissingamount <- NULL
-
-if(newnamearraylen==1) {
-finnamearray[i] <- newnamearray[j]
-finmissingamount[i] <- newmissingamount[j]
-} else {
-for (j in 1:(newnamearraylen)) {
-if(is.na(newnamearray[j,2])) {
-newnamearray[j,2] <- i
-newmissingamount[j,2] <- i
-rowlen <- length(unlist(strsplit(newnamearray[j,1], " ")))
-for (m in 1:rowlen) {
-k <- j + 1
-while (k <= newnamearraylen) {
-if(is.na(newnamearray[k,2])) {
-if(((unlist(strsplit(newnamearray[j,1]," "))) [m]) %in% (unlist(strsplit(newnamearray[k,1]," ")))) {
-newnamearray[k,2] <- i
-newmissingamount[k,2] <- i
-}
-}
-k <- k + 1
-}
-}
-i <- i + 1
-}
-j <- j + 1
-}
-
-if(is.na(newnamearray[newnamearraylen,2])) {
-newnamearray[newnamearraylen,2] <- i + 1
-newmissingamount[newnamearraylen,2] <- i + 1
-}
-
-newnamearray <- cbind(newnamearray,newmissingamount)
-newnamearray <- newnamearray[order(newnamearray[,2]),]
-i <- 1
-j <- 1
-
-while (j < newnamearraylen) {
-k <- j + 1
-finnamearray[i] <- newnamearray[j,1]
-finmissingamount[i] <- newnamearray[j,3]
-while ((k <= newnamearraylen) && (newnamearray[j,2]==newnamearray[k,2])) {
-finnamearray[i] <- paste(finnamearray[i],newnamearray[k,1])
-finmissingamount[i] <- paste(finmissingamount[i],newnamearray[k,3])
-k <- k + 1
-}
-i <- i + 1
-j <- k
-}
-
-if(!(newnamearray[newnamearraylen,2]==newnamearray[(newnamearraylen-1),2])) {
-finmissingamount[length(finnamearray)+1] <- newnamearray[newnamearraylen,3] 
-finnamearray[length(finnamearray)+1] <- newnamearray[newnamearraylen,1]
-}
-}
-
-
-temphaplist <- haplist[1,]
-uniques_for_adding <- NULL
-j <- 1
-
-while (j <= length(finnamearray)) {
-addsies <- NULL
-secondcols <- rep.int(0,no_pops)
-vectorizing <- unlist(strsplit(finnamearray[j], " "))
-checkformults <- as.data.frame(table(vectorizing))
-checkformults <- checkformults[order(checkformults[,2]),]
-checkformults <- droplevels(checkformults)
-checkformultslen <- dim(checkformults)[1]
-
-}
-}
-
-if(!(checkformults[checkformultslen,2]<=(checkformults[(checkformultslen-1),2]+1))) {
-print(noquote(""))
-print(noquote("You have a haplotype with so much missing data it could be a match"))
-print(noquote("to multiple different haplotypes. Please remove this haplotype and try again"))
-toprint <- vectorizing[which.max(unlist(strsplit(finmissingamount[j], " ")))]
-print(noquote(toprint))
-flush.console()
-stop("Please remove the above haplotype which has too much missing data and try again")
-}
-}
-
-onlyunique <- vectorizing[!duplicated(vectorizing)]
-print(noquote("The following set of haplotypes is identical"))
-print(noquote(onlyunique))
-flush.console()
-uniques_for_adding <- append(uniques_for_adding,onlyunique)
-for (k in 1:length(onlyunique)) {
-for (m in 2:haplistlength) {
-if (haplist[m,1]==onlyunique[k]) {
-firstcols <- haplist[m,1:2]
-secondcols <- secondcols + as.numeric(haplist[m,3:(no_pops+2)])
-}
-}
-}
-addsies <- cbind((t(as.matrix(firstcols))),(t(as.matrix(secondcols))))
-temphaplist <- rbind(temphaplist,addsies)
-j <- j + 1
-}
-
-for (m in 2:haplistlength) {
-if (!(haplist[m,1] %in% uniques_for_adding)) {
-temphaplist <- rbind(temphaplist,haplist[m,])
-}
-}
-
-haplist <- temphaplist
-print(noquote("The frequency for sets of identical haplotypes has been merged"))
-print(noquote("The modified input table is in the process of being written to:"))
-print("haplist.txt")
-print(noquote(""))
-flush.console()
 write.table(haplist, "haplist.txt", sep="\t",quote=FALSE, row.names=FALSE,col.names=FALSE)
 
 no_haps <- dim(haplist)[1] - 1 
