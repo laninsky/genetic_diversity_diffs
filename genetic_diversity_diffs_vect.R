@@ -316,21 +316,6 @@ for (j in 2:(no_haps)) {
    }
 }
 
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
 #Checking that haplotypes can't be a match to more than one haplotype due to missing data
 identical_haps <- matrix(which(propdiffs==0,arr.ind=TRUE),ncol=2)
 second_haps <- unique(identical_haps[,2])
@@ -357,20 +342,25 @@ if(length(second_haps)>0) {
                   stop("Has the most missing data of the matching haplotypes. Remove it and try again")
                }  
             }
-            print(noquote("The following set of haplotypes is identical:"))
-            print(noquote(propdiffs[1,c(i,temp_haps)]))
-            print(noquote(""))
-            hap_max <- which.max(nchar(gsub("N","",haplist[c(i,temp_haps),2]))+nchar(gsub(missingdata,"",haplist[c(i,temp_haps),2])))
-         
          }
-   
-   
+      }
+      print(noquote("The following set of haplotypes is identical:"))
+      print(noquote(propdiffs[1,c(i,temp_haps)]))
+      print(noquote(""))
+      hap_max <- which.max(nchar(gsub("N","",haplist[c(i,temp_haps),2]))+nchar(gsub(missingdata,"",haplist[c(i,temp_haps),2])))
+      rm_haps <- c(rm_haps,i,temp_haps)
+      combined_temp <- c(haplist[c(i,temp_haps)[hap_max],1],haplist[c(i,temp_haps)[hap_max],2],sum(as.numeric(haplist[c(i,temp_haps),3])),sum(as.numeric(haplist[c(i,temp_haps),4])))
+      combined_haps <- rbind(haplist,combined_temp)
    }
-#modding the list      
-      
-} else {   
+   haplist <- haplist[-rm_haps,]   
    print(noquote("The frequency for sets of identical haplotypes has been merged"))
    print(noquote("The modified input table is in the process of being written to:"))
+   print("haplist.txt")
+   print(noquote(""))
+   flush.console()
+} else {   
+   print(noquote("No identical haplotypes were found in your haplotype definition"))
+   print(noquote("The input table has been written to:"))
    print("haplist.txt")
    print(noquote(""))
    flush.console()
@@ -418,15 +408,6 @@ for (j in 2:(no_haps)) {
    
    
    
-} else {
-print(noquote("No identical haplotypes were found in your haplotype definition"))
-print(noquote("The input table has been written to:"))
-print("haplist.txt")
-print(noquote(""))
-flush.console()
-write.table(haplist, "haplist.txt", sep="\t",quote=FALSE, row.names=FALSE,col.names=FALSE)
-}
-
 i <- NULL
 j <- NULL
 k <- NULL
