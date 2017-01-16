@@ -319,7 +319,6 @@ for (j in 2:(no_haps)) {
 #Checking that haplotypes can't be a match to more than one haplotype due to missing data
 identical_haps <- matrix(which(propdiffs==0,arr.ind=TRUE),ncol=2)
 second_haps <- unique(identical_haps[,2])
-combined_haps <- NULL
 rm_haps <- NULL
 if(length(second_haps)>0) {
    for (i in second_haps) {
@@ -350,7 +349,7 @@ if(length(second_haps)>0) {
       hap_max <- which.max(nchar(gsub("N","",haplist[c(i,temp_haps),2]))+nchar(gsub(missingdata,"",haplist[c(i,temp_haps),2])))
       rm_haps <- c(rm_haps,i,temp_haps)
       combined_temp <- c(haplist[c(i,temp_haps)[hap_max],1],haplist[c(i,temp_haps)[hap_max],2],sum(as.numeric(haplist[c(i,temp_haps),3])),sum(as.numeric(haplist[c(i,temp_haps),4])))
-      combined_haps <- rbind(haplist,combined_temp)
+      haplist <- rbind(haplist,combined_temp)
    }
    haplist <- haplist[-rm_haps,]   
    print(noquote("The frequency for sets of identical haplotypes has been merged"))
@@ -400,13 +399,14 @@ for (j in 2:(no_haps)) {
          }
       }
      ambig_sites <- unique(c(which((toupper(first[mismatch]) %in% toupper(ambigs))),which((toupper(second[mismatch]) %in% toupper(ambigs)))))
-     mismatch <- mismatch[-ambig_sites]
+     if(length(ambig_sites)>0) {
+         mismatch <- mismatch[-ambig_sites]
+     }
      propdiffs[k,j] <- length(mismatch)/length(first)
    }
 }
 
-   
-   
+    
    
 i <- NULL
 j <- NULL
