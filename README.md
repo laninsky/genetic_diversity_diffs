@@ -1,4 +1,4 @@
-# genetic_diversity_diffs v1.0.2
+# genetic_diversity_diffs v1.0.3
 Tests for significant differences in genetic diversity between populations based on DNA sequence data
 
 #How it works#
@@ -52,7 +52,7 @@ Alexander, A., Steel, D., Hoekzema, K., Mesnick, S.L., Engelhaupt, D., Kerr, I.,
 
 If you want to cite the specific version of the script you used, I suggest the following:
 
-Alexander, A. 2016. genetic_diversity_diffs v1.0.2. Available from https://github.com/laninsky/genetic_diversity_diffs
+Alexander, A. 2017. genetic_diversity_diffs v1.0.3. Available from https://github.com/laninsky/genetic_diversity_diffs
 
 This pipeline also wouldn't be possible without:
 
@@ -62,6 +62,8 @@ Stringr:  Hadley Wickham (2012). stringr: Make it easier to work with strings..
   R package version 0.6.2. http://CRAN.R-project.org/package=stringr (for up-to-date citation information run citation("stringr" in R)
 
 #Version history#
+1.0.3: Vectorized some of the code to make it quicker. It now carries out nucleotide diversity calculations only counting differences at sites that do not involve ambiguous base calls, which might lead to slight differences in comparison with previous code.
+
 1.0.2: gave some more commented-out notes on the arlequin file in the examples folder
 
 1.0.1: made the output tables a little prettier for opening in excel
