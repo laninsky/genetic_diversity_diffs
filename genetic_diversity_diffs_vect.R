@@ -309,12 +309,58 @@ for (j in 2:(no_haps)) {
          }
       }
      ambig_sites <- unique(c(which((toupper(first[mismatch]) %in% toupper(ambigs))),which((toupper(second[mismatch]) %in% toupper(ambigs)))))
-     mismatch <- mismatch[-ambig_sites]
+     if(length(ambig_sites)>0) {
+         mismatch <- mismatch[-ambig_sites]
+     }
      propdiffs[k,j] <- length(mismatch)/length(first)
    }
 }
 
-# Calculating the amount of missing data between haplotypes   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+#Checking that haplotypes can't be a match to more than one haplotype due to missing data
+identical_haps <- matrix(which(propdiffs==0,arr.ind=TRUE),ncol=2)
+second_haps <- unique(identical_haps[,2])
+ident_hap <- NULL
+for (i in second_haps) {
+   temp_ident_hap <- propdiffs[1,i]
+   temp_haps <-  identical_haps[(which(identical_haps[,2]==i)),1]   
+   if(length(temp_haps)>1) {
+   #Where there are more than two haplotypes
+      for (j in 2:(length(temp_haps)-1)) {
+         for (k in (j+1):(length(temp_haps))) {
+            if (!(as.numeric(propdiffs[temp_haps[k],temp_haps[j]])==0)) {
+               print(noquote(""))
+               print(noquote("You have haplotype(s) with so much missing data they could be a match"))
+               print(noquote("to multiple different haplotypes e.g."))
+               print(noquote(paste(propdiffs[1,c(i,temp_haps)])))
+               print(noquote("Of these..."))               
+               hap_missing <- which.min(nchar(gsub("N","",haplist[c(i,temp_haps),2]))+nchar(gsub(missingdata,"",haplist[c(i,temp_haps),2])))
+               print(noquote(haplist[c(i,temp_haps),1][hap_missing]))
+               flush.console()
+               stop("Has the most missing data of the matching haplotypes. Remove it and try again")
+            }  
+         }
+      }
+   }   
+   
+   
+   
+   
+# Calculating the amount of mising data between haplotypes   
 j <- 2
 namearray <- NULL
 missingamount <- NULL
@@ -434,16 +480,6 @@ checkformults <- checkformults[order(checkformults[,2]),]
 checkformults <- droplevels(checkformults)
 checkformultslen <- dim(checkformults)[1]
 
-if(checkformultslen>2) {
-for (k in 1:(checkformultslen-2)) {
-if (!((checkformults[k,2]+1)==checkformults[(k+1),2])) {
-print(noquote(""))
-print(noquote("You have haplotype(s) with so much missing data they could be a match"))
-print(noquote("to multiple different haplotypes. Please remove these haplotypes and try again"))
-toprint <- vectorizing[which.max(unlist(strsplit(finmissingamount[j], " ")))]
-print(noquote(toprint))
-flush.console()
-stop("The above haplotype has the most missing data of the matching haplotypes. Remove it and try again")
 }
 }
 
