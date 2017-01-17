@@ -312,7 +312,7 @@ for (j in 2:(no_haps)) {
      if(length(ambig_sites)>0) {
          mismatch <- mismatch[-ambig_sites]
      }
-     propdiffs[k,j] <- length(mismatch)/length(first)
+     propdiffs[k,j] <- length(mismatch)/(length(first)-length(ambig_sites))
    }
 }
 
@@ -402,7 +402,7 @@ for (j in 2:(no_haps)) {
      if(length(ambig_sites)>0) {
          mismatch <- mismatch[-ambig_sites]
      }
-     propdiffs[k,j] <- length(mismatch)/length(first)
+     propdiffs[k,j] <- length(mismatch)/(length(first)-length(ambig_sites))
    }
 }
 
