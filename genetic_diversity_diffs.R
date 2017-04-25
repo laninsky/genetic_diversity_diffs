@@ -254,6 +254,24 @@ flush.console()
 stop("\n\nYour arlequin file does not appear to contain more than one population, so permutations cannot be performed.\n Please try a file with more than one pop.\n\n")
 }
 
+   
+#Removing any haplotypes not found in the populations
+zeroonlyrows <- NULL
+for (i in 2:(dim(haplist)[1])) {
+   if (sum(as.numeric(haplist[i,3:(dim(haplist)[2])]))==0) {
+      zeroonlyrows <- c(zeroonlyrows,i)
+   }
+}
+   
+if (!(is.null(zeroonlyrows))) {
+   print(noquote("The following haplotypes are not observed in your dataset, so have been removed"))
+   print(noquote(haplist[zeroonlyrows,1]))
+   print(noquote(""))
+}
+
+haplist <- haplist[-zeroonlyrows,]   
+rm(zeroonlyrows)   
+   
 # Getting some parameters that will be used whether haplotype and/or nucleotide diversity is being tested
 i <- NULL
 j <- NULL
@@ -348,7 +366,11 @@ if(length(second_haps)>0) {
       print(noquote(""))
       hap_max <- which.max(nchar(gsub("N","",haplist[c(i,temp_haps),2]))+nchar(gsub(missingdata,"",haplist[c(i,temp_haps),2])))
       rm_haps <- c(rm_haps,i,temp_haps)
-      combined_temp <- c(haplist[c(i,temp_haps)[hap_max],1],haplist[c(i,temp_haps)[hap_max],2],sum(as.numeric(haplist[c(i,temp_haps),3])),sum(as.numeric(haplist[c(i,temp_haps),4])))
+      combined_arrays <- NULL
+      for (k in 1:no_pops) {
+         combined_arrays <- c(combined_arrays,sum(as.numeric(haplist[c(i,temp_haps),(k+2)])))
+      }
+      combined_temp <- c(haplist[c(i,temp_haps)[hap_max],1],haplist[c(i,temp_haps)[hap_max],2],combined_arrays)
       haplist <- rbind(haplist,combined_temp)
    }
    haplist <- haplist[-rm_haps,]   
@@ -364,7 +386,7 @@ if(length(second_haps)>0) {
    print(noquote(""))
    flush.console()
 }
-
+   
 write.table(haplist, "haplist.txt", sep="\t",quote=FALSE, row.names=FALSE,col.names=FALSE)
 
 no_haps <- dim(haplist)[1] - 1 
