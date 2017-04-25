@@ -1,10 +1,10 @@
 # genetic_diversity_diffs v1.0.3
 Tests for significant differences in genetic diversity between populations based on DNA sequence data
 
-#How it works#
+# How it works
 This R script carries out a permutation procedure, reasmpling from the combined haplotype frequencies over all your populations, in order to test whether the observed differences in haplotype/nucleotide diversity between specific populations are greater than expected by chance.
 
-#Things to note#
+# Things to note
 1) This program "eats" arlequin files that have a haplotype block at the top of the file. Check out the example data if you are unsure on this format.
 
 2) You need to make sure the library stringr is loaded in to your R environment
@@ -23,7 +23,7 @@ This R script carries out a permutation procedure, reasmpling from the combined 
 
 If arlequin can accept the file, and genetic_diversity_diffs can't, then email alana dot alexander at ku dot edu. If you are having trouble with arlequin, make sure your hyphens haven't been made into em-dashes by word.
 
-#How to run it#
+# How to run it
 The easiest way for people less familiar with R, is to paste the entire function into R. You can then call the function by:
 
 genetic_diversity_diffs(working_dir,file_name,n_iter,test_for_hap,test_for_nucl)
@@ -40,12 +40,12 @@ test_for_hap == "Y"/"N" - do you wish to test for differences in haplotype diver
 
 test_for_nucl == "Y"/"N" - do you wish to test for difference in nucleotide diversity?
 
-#Example of input#
+# Example of input
 genetic_diversity_diffs("C:/Users/Folder/","ATL_by_region_394.arp",1000,"Y","Y")
 
 Demo arlequin file "ATL_by_region_394.arp" located in example folder
 
-#Suggested citation#
+# Suggested citation
 genetic_diversity_diffs was first published in:
 
 Alexander, A., Steel, D., Hoekzema, K., Mesnick, S.L., Engelhaupt, D., Kerr, I., Payne, R. and Baker, C.S., 2016. What influences the worldwide genetic structure of sperm whales (Physeter macrocephalus)?. Molecular ecology. 25: 2754–2772
@@ -61,7 +61,9 @@ R: R Core Team. 2015. R: A language and environment for statistical computing. U
 Stringr:  Hadley Wickham (2012). stringr: Make it easier to work with strings..
   R package version 0.6.2. http://CRAN.R-project.org/package=stringr (for up-to-date citation information run citation("stringr" in R)
 
-#Version history#
+# Version history
+1.0.4: Fixed a bug introduced in 1.0.3 that stopped the code from working for anything other than four populations
+
 1.0.3: Vectorized some of the code to make it quicker. It now carries out nucleotide diversity calculations only counting differences at sites that do not involve ambiguous base calls, which might lead to slight differences in comparison with previous code.
 
 1.0.2: gave some more commented-out notes on the arlequin file in the examples folder
