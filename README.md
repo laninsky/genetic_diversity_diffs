@@ -1,4 +1,4 @@
-# genetic_diversity_diffs v1.0.3
+# genetic_diversity_diffs v1.0.4
 Tests for significant differences in genetic diversity between populations based on DNA sequence data
 
 # How it works
