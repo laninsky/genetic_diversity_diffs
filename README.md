@@ -1,4 +1,4 @@
-# genetic_diversity_diffs v1.0.4
+# genetic_diversity_diffs v1.0.5
 Tests for significant differences in genetic diversity between populations based on DNA sequence data
 
 # How it works
@@ -62,6 +62,8 @@ Stringr:  Hadley Wickham (2012). stringr: Make it easier to work with strings..
   R package version 0.6.2. http://CRAN.R-project.org/package=stringr (for up-to-date citation information run citation("stringr" in R)
 
 # Version history
+1.0.5: Fixed a bug introduced in 1.0.4 that stopped the code from working when every haplotype in the haplotype block was unique.
+
 1.0.4: Fixed a bug introduced in 1.0.3 that stopped the code from working for anything other than four populations
 
 1.0.3: Vectorized some of the code to make it quicker. It now carries out nucleotide diversity calculations only counting differences at sites that do not involve ambiguous base calls, which might lead to slight differences in comparison with previous code.
