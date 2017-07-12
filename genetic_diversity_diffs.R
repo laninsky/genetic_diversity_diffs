@@ -267,10 +267,9 @@ if (!(is.null(zeroonlyrows))) {
    print(noquote("The following haplotypes are not observed in your dataset, so have been removed"))
    print(noquote(haplist[zeroonlyrows,1]))
    print(noquote(""))
-}
-
-haplist <- haplist[-zeroonlyrows,]   
-rm(zeroonlyrows)   
+   haplist <- haplist[-zeroonlyrows,]   
+   rm(zeroonlyrows)   
+}   
    
 # Getting some parameters that will be used whether haplotype and/or nucleotide diversity is being tested
 i <- NULL
