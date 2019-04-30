@@ -26,7 +26,7 @@ If arlequin can accept the file, and genetic_diversity_diffs can't, then email a
 # How to run it
 The easiest way for people less familiar with R, is to paste the entire function into R. You can then call the function by:
 
-genetic_diversity_diffs(working_dir,file_name,n_iter,test_for_hap,test_for_nucl)
+`genetic_diversity_diffs(working_dir,file_name,n_iter,test_for_hap,test_for_nucl)`
 
 where:
 
@@ -41,9 +41,9 @@ test_for_hap == "Y"/"N" - do you wish to test for differences in haplotype diver
 test_for_nucl == "Y"/"N" - do you wish to test for difference in nucleotide diversity?
 
 # Example of input
-genetic_diversity_diffs("C:/Users/Folder/","ATL_by_region_394.arp",1000,"Y","Y")
+`genetic_diversity_diffs("C:/Users/Folder/","ATL_by_region_394.arp",1000,"Y","Y")`
 
-Demo arlequin file "ATL_by_region_394.arp" located in example folder
+Demo arlequin file "ATL_by_region_394.arp" (and outputs) located in example folder
 
 # Suggested citation
 genetic_diversity_diffs was first published in:
@@ -52,7 +52,7 @@ Alexander, A., Steel, D., Hoekzema, K., Mesnick, S.L., Engelhaupt, D., Kerr, I.,
 
 If you want to cite the specific version of the script you used, I suggest the following:
 
-Alexander, A. 2017. genetic_diversity_diffs v1.0.3. Available from https://github.com/laninsky/genetic_diversity_diffs
+Alexander, A. 2017. genetic_diversity_diffs v1.x.x. Available from https://github.com/laninsky/genetic_diversity_diffs
 
 This pipeline also wouldn't be possible without:
 
