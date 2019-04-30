@@ -1,0 +1,6 @@
+"Haplotype diversity for each population given to right"	0.499570003439972	0.648351648351648	0.615610799251537	0
+"Haplotype diversity difference between populations below diagonal, p-values above diagonal"	GMX	CNI	WNAO	MED
+GMX	--	0.05	0	0
+CNI	0.148781644911676	--	0.655	0
+WNAO	0.116040795811565	0.0327408491001112	--	0
+MED	0.499570003439972	0.648351648351648	0.615610799251537	--

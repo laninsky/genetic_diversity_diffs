@@ -177,6 +177,19 @@ flush.console()
 stop("Please rename the multiple haplotype definitions that have the above name so that they have unique names")
 }
 
+# Removing any "haplotype" that result from blank lines in the haplist
+todelete <- NULL
+for (i in 1:dim(haplist)[1]) {
+  if (all(is.na(haplist[i,]))) {
+    todelete <- c(todelete,i)
+  }
+}
+
+if (!is.null(todelete)) {
+  haplist <- haplist[-todelete,]
+  haplistlength <- dim(haplist)[1]
+}
+
 minhaplength <- min(nchar(haplist[2:haplistlength,2]))
 maxhaplength <- max(nchar(haplist[2:haplistlength,2]))
 
@@ -750,3 +763,4 @@ print(noquote("STEP THREE: You want to skip a test for nucleotide diversity... p
 flush.console()
 }
 }
+

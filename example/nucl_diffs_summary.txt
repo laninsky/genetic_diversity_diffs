@@ -1,0 +1,6 @@
+"Nucleotide diversity for each population given to right"	0.00211763144387014	0.00324988294913107	0.00267576184513676	0
+"Nucleotide diversity difference between populations below diagonal, p-values above diagonal"	GMX	CNI	WNAO	MED
+GMX	--	0.098	0.087	0
+CNI	0.00113225150526092	--	0.409	0
+WNAO	0.000558130401266621	0.000574121103994304	--	0
+MED	0.00211763144387014	0.00324988294913107	0.00267576184513676	--
