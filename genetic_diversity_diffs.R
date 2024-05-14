@@ -356,7 +356,7 @@ if(length(second_haps)>0) {
       temp_haps <-  identical_haps[(which(identical_haps[,2]==i)),1]   
       if(length(temp_haps)>1) {
       #Where there are more than two haplotypes
-         for (j in 1:(length(temp_haps)-1)) {
+         for (j in 2:(length(temp_haps)-1)) {
             hap_max <- which.max(nchar(gsub("N","",haplist[c(i,temp_haps),2]))+nchar(gsub(missingdata,"",haplist[c(i,temp_haps),2])))
             for (k in (j+1):(length(temp_haps))) {
                if (!(as.numeric(propdiffs[temp_haps[k],temp_haps[j]])==0)) {
@@ -763,4 +763,3 @@ print(noquote("STEP THREE: You want to skip a test for nucleotide diversity... p
 flush.console()
 }
 }
-
