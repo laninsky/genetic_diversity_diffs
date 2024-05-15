@@ -1,4 +1,4 @@
-# genetic_diversity_diffs v1.0.6
+# genetic_diversity_diffs v1.0.7
 Tests for significant differences in genetic diversity between populations based on DNA sequence data
 
 # How it works
@@ -52,7 +52,7 @@ Alexander, A., Steel, D., Hoekzema, K., Mesnick, S.L., Engelhaupt, D., Kerr, I.,
 
 If you want to cite the specific version of the script you used, I suggest the following:
 
-Alexander, A. 2017. genetic_diversity_diffs v1.x.x. Available from https://github.com/laninsky/genetic_diversity_diffs
+Alexander, A. 20XX. genetic_diversity_diffs v1.x.x. Available from https://github.com/laninsky/genetic_diversity_diffs
 
 This pipeline also wouldn't be possible without:
 
@@ -62,6 +62,8 @@ Stringr:  Hadley Wickham (2012). stringr: Make it easier to work with strings..
   R package version 0.6.2. http://CRAN.R-project.org/package=stringr (for up-to-date citation information run citation("stringr" in R)
 
 # Version history
+1.0.7: Fixed a bug that had been there since time immemorial which meant that if there were multiple identical haplotypes, the second in the bunch wouldn't have been compared to others. Only impacted you if you had identical haplotypes in your haplotype block, and I encountered it because of an error, so likely the code would have broken rather than getting funky results.
+
 1.0.6: Fixed a [bug](https://github.com/laninsky/genetic_diversity_diffs/issues/1) where blank lines in the haplotype block of the \*.arp file would cause the code to fail. Thanks to [Ahmed](https://github.com/Aljumiliy1) for flagging this issue.
 
 1.0.5: Fixed a bug introduced in 1.0.4 that stopped the code from working when every haplotype in the haplotype block was unique.
